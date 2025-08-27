@@ -1,0 +1,270 @@
+ body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+    
+    /* Banner superior */
+    .banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background-color: red;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      font-size: 20px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    /* Área principal */
+    .main {
+      margin-top: 50px;
+      flex: 1;
+      padding: 15px;
+     
+    }
+    
+     /* Menú lateral */
+    .menu {
+      width: 210px;
+      height: 1300px;
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .menu h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+    }
+    .menu a {
+      display: block;
+      padding: 10px;
+      color: #ddd;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      transition: 0.3s;
+    }
+    .menu a:hover {
+      background: #444;
+      color: #fff;
+    }
+    /* Área del video */
+    .content {
+      flex: 1;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+    }
+    iframe {
+      width: 20%;
+      height: 90%;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+   .menu {
+  width: 250px;
+  background: #222;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 60px; /* 👈 ajusta según la altura del banner */
+}
+
+.shorts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* espacio entre videos */
+  justify-content: center; /* centra los videos */
+  padding: 20px;
+  margin-top: 60px; /* 👈 ajusta según la altura del banner */
+}
+
+.short {
+  margin-top: 60px; /* 👈 ajusta según la altura del banner */
+  width: 250px;   /* 👈 ancho fijo del short */
+  height: 200px;  /* 👈 alto fijo del short */
+  background: #000;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.short iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 15px;
+}
+
+
+/* Banner rojo con letras centradas */
+.banner {
+  background-color: #f80808; /* Rojo */
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  
+}
+
+/* Menú lateral */
+.menu {
+  width: 210px;
+  background: #222;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+
+  position: fixed;        /* Fijo mientras se hace scroll */
+  top: 0;
+  left: 0;
+  height: 100vh;          /* Ocupa toda la altura de la ventana */
+  overflow-y: auto;       /* Scroll interno si hay mucho contenido */
+}
+
+/* Contenido principal */
+.content {
+  margin-left: 210px;     /* Evita que el menú tape el contenido */
+  padding: 20px;
+  flex: 1;
+}
+
+/* Responsive: en pantallas pequeñas el menú se hace collapsible */
+@media (max-width: 768px) {
+  .menu {
+    position: absolute;
+    width: 180px;
+    left: -180px;          /* Se oculta fuera de pantalla */
+    transition: left 0.3s;
+  }
+  .menu.active {
+    left: 0;               /* Cuando se activa, se muestra */
+  }
+  .content {
+    margin-left: 0;
+  }
+  .menu-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #222;
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+}
+
+.banner-separador {
+  background: linear-gradient(90deg, #f8094d, #f40606); /* Degradado */
+  color: white;
+  text-align: center;
+  padding: 25px;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 40px 0;         /* Espaciado arriba y abajo */
+  border-radius: 12px;    /* Bordes redondeados */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* Sombra */
+}
+
+body {
+  margin: 0;
+  padding-top: 70px; /* 50px del banner + 20px extra */
+}
+
+ 
+
+.wrap { width:min(760px, 100%); margin-inline:auto; }
+    .card { background:#06d0f4; border:1px solid #e5e7eb; border-radius:16px; box-shadow:0 2px 10px rgba(0,0,0,.04); }
+    .header { padding:16px 20px; border-bottom:1px solid #eee; display:flex; gap:10px; align-items:center; }
+    label { font-weight:600; }
+    .form { padding:16px 20px; display:grid; gap:12px; }
+    textarea {
+      width:100%; min-height:90px; resize:vertical; padding:12px 14px;
+      border:1px solid #d1d5db; border-radius:12px; outline:none;
+    }
+    textarea:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,.15); }
+    .row { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .hint { font-size:12px; color:#6b7280; }
+    button {
+      padding:10px 16px; border:0; border-radius:12px; cursor:pointer; font-weight:600;
+      background:#111827; color:white;
+    }
+    button:disabled { opacity:.6; cursor:not-allowed; }
+    .list { margin-top:18px; display:grid; gap:12px; }
+    .post { background:#07e3f3; border:1px solid #e5e7eb; border-radius:14px; padding:14px 16px; }
+    .post p { margin:0 0 8px 0; white-space:pre-wrap; }
+    .meta { font-size:12px; color:#6b7280; }
+
+
+ #notificaciones {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      max-width: 400px;
+    }
+    .notificacion {
+      background: #f1f1f1;
+      margin-bottom: 5px;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+
+.notificaciones-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notificacion {
+  background: #e0e0e0;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #111;
+}
+
+.notificaciones-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notificacion {
+  background: #f4f6f7;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #111;
+}
+
+
+
+
