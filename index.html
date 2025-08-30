@@ -9,6 +9,14 @@
   
   <div class="banner">
   OTAKUGAMER22M
+<!-- Icono de campana -->
+  <div class="campana" onclick="toggleNotificaciones()">🔔</div>
+
+  <!-- Contenedor de notificaciones -->
+  <div id="notificaciones">
+    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+    <ul id="listaNotificaciones"></ul>
+  </div>
  </div>
 
 <div class="container">
@@ -25,7 +33,6 @@
     <a href="#ContenidoReciente">CONTENIDO RECIENTE</a>
     <a href="#Comentarios">COMENTARIOS</a>
     <a href="#Notificaciones">NOTIFICACIONES</a>
-    <a href="#Historial">HISTORIAL</a>
     <a href="#ComentariodelAdministrador">COMENTARIO DEL ADMINISTRADOR</a>
    
 
@@ -159,21 +166,6 @@
   
  <button id="subscribeBtn">Notificaciones</button>
 
-
- <!-- Ejemplo de uso -->
- <div class="banner-separador">
-  HISTORIAL DE NOTIFICACIONES
- </div>
-  
-   <a name="Historial"></a>
-  <h2>Historial de notificaciones:</h2>
-  <div id="notificaciones"></div>
-
- <!-- Ejemplo de uso -->
- <div class="banner-separador">
-  FIN DEL HISTORIAL DE NOTIFICACIONES
- </div>
-
  <!-- Ejemplo de uso -->
  <div class="banner-separador">
   COMENTARIOS
@@ -262,3 +254,4 @@
 
 </body>
 </html>
+
