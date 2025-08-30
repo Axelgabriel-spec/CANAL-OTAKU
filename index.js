@@ -203,66 +203,37 @@ app.post('/push', (req, res) => {
 
 app.listen(3000, () => console.log('Servidor escuchando en puerto 3000'));
 
+ // Mostrar/Ocultar
+    function toggleNotificaciones() {
+      const contenedor = document.getElementById("notificaciones");
+      contenedor.style.display = contenedor.style.display === "block" ? "none" : "block";
+    }
 
-// historial de notificaciones 
+    // Función para agregar notificaciones
+    function nuevaNotificacion(mensaje, videoURL = null) {
+      const lista = document.getElementById("listaNotificaciones");
+      const li = document.createElement("li");
+      li.textContent = "📢 " + mensaje;
+      lista.prepend(li);
 
-const listaNotificaciones = document.getElementById('notificaciones');
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-  navigator.serviceWorker.register('sw.js')
-    .then(reg => console.log('Service Worker registrado', reg))
-    .catch(err => console.error('Error registrando SW:', err));
+      // Si la notificación trae video, cambiar iframe
+      if (videoURL) {
+        document.getElementById("videoFrame").src = videoURL;
+      }
+    }
 
-  // Escuchar mensajes del SW
-  navigator.serviceWorker.addEventListener('message', event => {
-    mostrarNotificacionEnLista(event.data);
-  });
-}
+    // Ejemplos de notificaciones automáticas
+    setTimeout(() => {
+      nuevaNotificacion("Nuevo video subido", "https://www.youtube.com/embed/aqz-KE-bpKQ");
+    }, 2000);
 
-subscribeBtn.addEventListener('click', async () => {
-  const permission = await Notification.requestPermission();
-  if (permission === 'granted') {
-    alert('¡Notificaciones activadas!');
-  } else {
-    alert('No se activaron las notificaciones.');
-  }
-});
+    setTimeout(() => {
+      nuevaNotificacion("Transmisión en vivo ahora", "https://www.youtube.com/embed/5qap5aO4i9A");
+    }, 6000);
 
-function mostrarNotificacionEnLista(data) {
-  const div = document.createElement('div');
-  div.className = 'notificacion';
-  div.textContent = `${data.title}: ${data.body}`;
-  listaNotificaciones.prepend(div); // Mostrar la más reciente arriba
-}
-
-
-self.addEventListener('push', event => {
-  const data = event.data.json();
-
-  // Mostrar la notificación en el sistema
-  const promise = self.registration.showNotification(data.title, {
-    body: data.body,
-    icon: 'icon.png'
-  });
-
-  // Mandar mensaje a la página para agregar a la lista
-  self.clients.matchAll().then(clients => {
-    clients.forEach(client => {
-      client.postMessage(data);
-    });
-  });
-
-  event.waitUntil(promise);
-});
-
-function mostrarNotificacionEnLista(data) {
-  const listaNotificaciones = document.getElementById('notificaciones');
-  const div = document.createElement('div');
-  div.className = 'notificacion';
-  div.textContent = `${data.title}: ${data.body}`;
-  listaNotificaciones.prepend(div); // la más reciente arriba
-}
-
-console.log("Tu página funciona con XAMPP");
+    setTimeout(() => {
+      nuevaNotificacion("Actualización importante en la página");
+    }, 10000);
 
 
 
@@ -270,3 +241,4 @@ console.log("Tu página funciona con XAMPP");
 
 
    
+
