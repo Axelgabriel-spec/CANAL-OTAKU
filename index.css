@@ -318,7 +318,21 @@ body {
       cursor: pointer;
     }
 
+ #subscribeBtn {
+      background-color: #111827; /* mismo estilo de tu captura */
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 20px; /* <-- separación */
+    }
 
+    #subscribeBtn:hover {
+      background-color: #1f2937;
+    }
+   
 
 
 
