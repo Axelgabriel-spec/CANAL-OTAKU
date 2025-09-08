@@ -333,6 +333,92 @@ body {
       background-color: #1f2937;
     }
    
+  button { padding: 10px 20px; margin: 10px; cursor: pointer; border-radius: 8px; }
+    #loginBox,#perfilBox{
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #f40202;
+      background-color: #f41f07;
+      border-radius: 10px;
+      width: 300px;
+    }
+    
+/* Contenedor del login */
+#loginBox {
+  width: 400px;         /* 🔹 más ancho */
+  max-height: 500%;    /* 🔹 más alto (controla el espacio antes de que aparezca scroll) */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  background: #e80606;
+  overflow-y: auto;     /* 🔹 Scroll vertical automático */
+  overflow-x: hidden;   /* 🔹 Evita el scroll horizontal */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Personalización de la barra */
+#loginBox::-webkit-scrollbar {
+  width: 10px;          /* Grosor de la barra */
+}
+#loginBox::-webkit-scrollbar-track {
+  background: #eee;
+  border-radius: 10px;
+}
+#loginBox::-webkit-scrollbar-thumb {
+  background: #4CAF50;
+  border-radius: 10px;
+}
+#loginBox::-webkit-scrollbar-thumb:hover {
+  background: #388e3c;
+}
+
+
+    #profile img { width: 80px; height: 80px; border-radius: 50%; margin-top: 10px; }
+    .hidden { display: none; }
+    
+#userBox img {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
+
+    /* Estilo de la foto de perfil */
+#photoBox img {
+  width: 100px;              /* ancho fijo */
+  height: 44px;             /* alto fijo */
+  object-fit: cover;         /* recorta la imagen para que no se deforme */
+  border-radius: 60%;        /* la hace redonda */
+  border: 3px solid #4CAF50; /* borde color verde, puedes cambiarlo */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* sombra suave */
+  display: block;
+  margin: 10px auto;         /* centrado horizontal */
+}
+
+input {
+      display: block;
+      margin: 10px 0;
+      width: 100%;
+      padding: 8px;
+    }
+   
+    button:hover {
+      background: #0a64f4;
+    }
+
+
+    #perfilBox {
+      display: none; /* Oculto hasta que el usuario inicie sesión */
+    }
+    #perfilFoto {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #4c6daf;
+  
+    }
 
 
 
