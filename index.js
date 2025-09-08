@@ -235,10 +235,193 @@ app.listen(3000, () => console.log('Servidor escuchando en puerto 3000'));
       nuevaNotificacion("Actualización importante en la página");
     }, 10000);
 
+ function toggleLogin() {
+  const box = document.getElementById("loginBox");
+  box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+}
+
+
+function toggleUser() {
+  const box = document.getElementById("perfilBox");
+  box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+}
+
+function register() {
+  const username = document.getElementById("username").value.trim();
+  const profilePic = document.getElementById("profilePic").value.trim();
+
+  if (!username) {
+    alert("Por favor ingresa un nombre de usuario");
+    return;
+  }
+
+  const user = { username, profilePic };
+  localStorage.setItem("currentUser", JSON.stringify(user));
+
+  mostrarUsuario();
+}
+
+
+
+
+
+
+function logout() {
+  localStorage.removeItem("currentUser");
+  document.getElementById("profile").classList.add("hidden");
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("loginBtn").style.display = "inline-block";
+}
+
+function mostrarUsuario() {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+  if (user) {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("profile").classList.remove("hidden");
+    document.getElementById("loginBtn").style.display = "none";
+
+    document.getElementById("userDisplay").textContent = user.username;
+    document.getElementById("photoBox").innerHTML = user.profilePic
+      ? `<img src="${user.profilePic}" alt="Foto de perfil">`
+      : "<p>Sin foto de perfil</p>";
+  }
+}
+
+window.onload = mostrarUsuario;
+
+  
+   // 🔹 Mostrar/Ocultar login
+  function toggleLogin() {
+    const box = document.getElementById("loginBox");
+    box.style.display = (box.style.display === "none") ? "block" : "none";
+  }
+
+  // 🔹 Función Entrar
+  function entrar() {
+    const usuario = document.getElementById("usuario").value;
+    const correo = document.getElementById("correo").value;
+    const foto = document.getElementById("fotoPerfil").files[0];
+
+    if (usuario && correo && foto) {
+      alert("Bienvenido " + usuario);
+
+     
+
+      // Limpiar campos después de dar Entrar
+      eliminarDatos();
+    } else {
+      alert("Por favor ingresa tu nombre, correo y selecciona una foto.");
+    }
+  }
+
+  // 🔹 Función para eliminar datos manualmente
+  function eliminarDatos() {
+    document.getElementById("usuario").value = "";
+    document.getElementById("correo").value = "";
+    document.getElementById("fotoPerfil").value = "";
+  }
+
+
+// 🔹 Función para limpiar datos del login
+function eliminarDatos() {
+  document.getElementById("usuario").value = "";
+  document.getElementById("correo").value = "";
+  document.getElementById("fotoPerfil").value = "";
+}
+
+
+     function entrar() {
+      const usuario = document.getElementById("usuario").value;
+      const foto = document.getElementById("fotoPerfil").files[0];
+
+      if (usuario && foto) {
+        // Mostrar nombre en perfil
+        document.getElementById("perfilNombre").textContent = "Bienvenido, " + usuario;
+
+        // Convertir la foto a una URL temporal y mostrarla
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById("perfilFoto").src = e.target.result;
+        }
+        reader.readAsDataURL(foto);
+
+        // Ocultar login y mostrar perfil
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("perfilBox").style.display = "block";
+      } else {
+        alert("Por favor ingresa tu nombre y selecciona una foto.");
+      }
+    }
+
+    function cerrarSesion() {
+      // Ocultar perfil y volver a login
+      document.getElementById("perfilBox").style.display = "none";
+      document.getElementById("loginBox").style.display = "block";
+
+      // Limpiar inputs
+      document.getElementById("usuario").value = "";
+      document.getElementById("fotoPerfil").value = "";
+      document.getElementById("perfilFoto").src = "";
+      document.getElementById("perfilNombre").textContent = "";
+    }
+
+    // Cargar datos al iniciar
+    window.onload = function() {
+      const nombreGuardado = localStorage.getItem("nombreUsuario");
+      const fotoGuardada = localStorage.getItem("fotoPerfil");
+
+      if (nombreGuardado) {
+        document.getElementById("nombrePerfil").textContent = nombreGuardado;
+      }
+      if (fotoGuardada) {
+        document.getElementById("imgPerfil").src = fotoGuardada;
+      }
+    }
+
+    // Guardar nombre y foto en localStorage
+    function guardarDatos() {
+      const nombre = document.getElementById("usuario").value;
+      const file = document.getElementById("fotoPerfil").files[0];
+      const correo = document.getElementById("correo").value;
+
+      if (!nombre) {
+        alert("Por favor escribe tu nombre.");
+        return;
+      }
+
+      localStorage.setItem("nombreUsuario", nombre);
+      localStorage.setItem("correoUsuario", correo);
+      document.getElementById("nombrePerfil").textContent = nombre;
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const base64 = e.target.result;
+          localStorage.setItem("fotoPerfil", base64);
+          document.getElementById("imgPerfil").src = base64;
+        }
+        reader.readAsDataURL(file);
+      } else {
+        alert("Por favor selecciona una foto.");
+      }
+    }
+
+    // Borrar nombre y foto
+    function borrarDatos() {
+      localStorage.removeItem("nombreUsuario");
+      localStorage.removeItem("fotoPerfil");
+      document.getElementById("nombrePerfil").textContent = "";
+      document.getElementById("imgPerfil").src = "";
+      alert("❌ Datos eliminados");
+    }
+   
+
+
 
 
 
 
 
    
+
 
