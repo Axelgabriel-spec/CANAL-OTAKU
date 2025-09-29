@@ -304,32 +304,8 @@ window.onload = mostrarUsuario;
 
     if (usuario && correo && foto) {
       alert("Bienvenido " + usuario);
-
-     
-
-      // Limpiar campos después de dar Entrar
-      eliminarDatos();
-    } else {
-      alert("Por favor ingresa tu nombre, correo y selecciona una foto.");
     }
   }
-
-  // 🔹 Función para eliminar datos manualmente
-  function eliminarDatos() {
-    document.getElementById("usuario").value = "";
-    document.getElementById("correo").value = "";
-    document.getElementById("fotoPerfil").value = "";
-  }
-
-
-// 🔹 Función para limpiar datos del login
-function eliminarDatos() {
-  document.getElementById("usuario").value = "";
-  document.getElementById("correo").value = "";
-  document.getElementById("fotoPerfil").value = "";
-}
-
-
      function entrar() {
       const usuario = document.getElementById("usuario").value;
       const foto = document.getElementById("fotoPerfil").files[0];
@@ -467,6 +443,7 @@ function obtenerUsuarios() {
       renderUsuarios();
       mostrarPerfil();
     };
+
 
 
 
