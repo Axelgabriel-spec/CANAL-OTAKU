@@ -378,50 +378,96 @@ function eliminarDatos() {
       }
     }
 
-    // Guardar nombre y foto en localStorage
-    function guardarDatos() {
-      const nombre = document.getElementById("usuario").value;
-      const file = document.getElementById("fotoPerfil").files[0];
-      const correo = document.getElementById("correo").value;
 
-      if (!nombre) {
-        alert("Por favor escribe tu nombre.");
+
+function obtenerUsuarios() {
+      return JSON.parse(localStorage.getItem("usuarios")) || [];
+    }
+
+    function guardarUsuarios(lista) {
+      localStorage.setItem("usuarios", JSON.stringify(lista));
+    }
+
+    function entrar() {
+      const usuario = document.getElementById("usuario").value;
+      const correo = document.getElementById("correo").value;
+      const fotoInput = document.getElementById("fotoPerfil").files[0];
+
+      if (!usuario || !correo || !fotoInput) {
+        alert("Por favor completa todos los campos.");
         return;
       }
 
-      localStorage.setItem("nombreUsuario", nombre);
-      localStorage.setItem("correoUsuario", correo);
-      document.getElementById("nombrePerfil").textContent = nombre;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const foto = e.target.result;
 
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const base64 = e.target.result;
-          localStorage.setItem("fotoPerfil", base64);
-          document.getElementById("imgPerfil").src = base64;
-        }
-        reader.readAsDataURL(file);
-      } else {
-        alert("Por favor selecciona una foto.");
+        let usuarios = obtenerUsuarios();
+        const nuevo = { nombre: usuario, correo: correo, foto: foto };
+
+        usuarios.push(nuevo);
+        guardarUsuarios(usuarios);
+
+        // Guardar este usuario como "actual"
+        localStorage.setItem("usuarioActual", JSON.stringify(nuevo));
+
+        renderUsuarios();
+        mostrarPerfil();
+
+        document.getElementById("usuario").value = "";
+        document.getElementById("correo").value = "";
+        document.getElementById("fotoPerfil").value = "";
+      };
+      reader.readAsDataURL(fotoInput);
+    }
+
+    function renderUsuarios() {
+      const frame = document.getElementById("usuariosFrame");
+      frame.innerHTML = "";
+
+      const usuarios = obtenerUsuarios();
+      usuarios.forEach(user => {
+        const div = document.createElement("div");
+        div.classList.add("usuario");
+
+        div.innerHTML = `
+          <img src="${user.foto}" alt="Foto de ${user.nombre}">
+          <div><strong>${user.nombre}</strong></div>
+          <div class="info">${user.nombre}<br>${user.correo}</div>
+        `;
+
+        frame.appendChild(div);
+      });
+    }
+
+    function mostrarPerfil() {
+      const actual = JSON.parse(localStorage.getItem("usuarioActual"));
+      if (actual) {
+        document.getElementById("perfilFoto").src = actual.foto;
+        document.getElementById("perfilNombre").textContent = actual.nombre;
       }
     }
 
-    // Borrar nombre y foto
-    function borrarDatos() {
-      localStorage.removeItem("nombreUsuario");
-      localStorage.removeItem("fotoPerfil");
-      document.getElementById("nombrePerfil").textContent = "";
-      document.getElementById("imgPerfil").src = "";
-      alert("❌ Datos eliminados");
+    function toggleUser() {
+      const box = document.getElementById("perfilBox");
+      if (box.style.display === "none" || box.style.display === "") {
+        box.style.display = "block";
+        mostrarPerfil();
+      } else {
+        box.style.display = "none";
+      }
     }
-   
+
+    function cerrarSesion() {
+      localStorage.removeItem("usuarioActual");
+      document.getElementById("perfilBox").style.display = "none";
+    }
+
+    window.onload = function() {
+      renderUsuarios();
+      mostrarPerfil();
+    };
 
 
-
-
-
-
-
-   
 
 
