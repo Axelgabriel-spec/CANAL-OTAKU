@@ -327,7 +327,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;
-  background: #e80606;
+  background-color: #f41f07;
   overflow-y: auto;     /* 🔹 Scroll vertical automático */
   overflow-x: hidden;   /* 🔹 Evita el scroll horizontal */
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -379,7 +379,7 @@ input {
     }
    
     button:hover {
-      background: #0a64f4;
+      background-color: #f41f07;
     }
 
 
@@ -447,6 +447,7 @@ input {
     .usuario:hover .info {
       display: block;
     }
+
 
 
 
