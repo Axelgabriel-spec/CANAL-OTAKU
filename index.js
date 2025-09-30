@@ -229,8 +229,6 @@ window.onload = mostrarUsuario;
       }
     }
 
-
-
 function obtenerUsuarios() {
       return JSON.parse(localStorage.getItem("usuarios")) || [];
     }
@@ -263,8 +261,9 @@ function obtenerUsuarios() {
         localStorage.setItem("usuarioActual", JSON.stringify(nuevo));
 
         renderUsuarios();
-        mostrarPerfil();
+        mostrarPerfil(true); // Forzar mostrar perfil
 
+        // limpiar formulario
         document.getElementById("usuario").value = "";
         document.getElementById("correo").value = "";
         document.getElementById("fotoPerfil").value = "";
@@ -291,20 +290,15 @@ function obtenerUsuarios() {
       });
     }
 
-    function mostrarPerfil() {
+    function mostrarPerfil(forzar = false) {
       const actual = JSON.parse(localStorage.getItem("usuarioActual"));
+      const box = document.getElementById("perfilBox");
+
       if (actual) {
         document.getElementById("perfilFoto").src = actual.foto;
         document.getElementById("perfilNombre").textContent = actual.nombre;
-      }
-    }
-
-    function toggleUser() {
-      const box = document.getElementById("perfilBox");
-      if (box.style.display === "none" || box.style.display === "") {
-        box.style.display = "block";
-        mostrarPerfil();
-      } else {
+        box.style.display = "block"; // siempre visible si hay usuario
+      } else if (forzar) {
         box.style.display = "none";
       }
     }
@@ -318,9 +312,4 @@ function obtenerUsuarios() {
       renderUsuarios();
       mostrarPerfil();
     };
-
-
-
-
-
 
